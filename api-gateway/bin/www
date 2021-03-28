@@ -1,5 +1,16 @@
 #!/usr/bin/env node
-var config = require('../config');
+
+/*
+============================================
+; Title:  www.js
+; Author: Professor Krasso
+; Date:   25 Mar 2021
+; Modified by: Eunice Lim
+; Description: The bin/www file to start Express as Web server
+;===========================================
+*/
+
+var config = require('../config');//from config.js files setting
 /**
  * Module dependencies.
  */
@@ -12,7 +23,7 @@ var http = require('http');
  * Get port from environment and store in Express.
  */
 
-var port = normalizePort(config.web.port);
+var port = normalizePort(config.web.port); //from config.js files setting
 app.set('port', port);
 
 /**

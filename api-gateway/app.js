@@ -1,3 +1,13 @@
+/*
+============================================
+; Title:  app.js
+; Author: Professor Krasso
+; Date:   25 Mar 2021
+; Modified by: Eunice Lim
+; Description: The application file
+;===========================================
+*/
+
 var createError = require('http-errors');
 var express = require('express');
 var path = require('path');
@@ -10,6 +20,7 @@ var mongoose = require('mongoose');
 mongoose.Promise = require('bluebird');
 
 var app = express();
+var apiCatalog = require('./routes/api-catalog'); //Added for week 2. Require statement for api-catalog routes
 
 /***Database connection*/
 mongoose.connect('mongodb+srv://admin:admin@buwebdev-cluster-1.ltgx9.mongodb.net/api-gateway', {
@@ -28,6 +39,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
+app.use('/api', apiCatalog); //Register the API Catalog’s routes
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
