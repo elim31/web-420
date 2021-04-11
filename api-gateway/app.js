@@ -13,7 +13,6 @@ var express = require('express');
 var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 var indexRouter = require('./routes/index');
 
 var mongoose = require('mongoose');
@@ -21,6 +20,7 @@ mongoose.Promise = require('bluebird');
 
 var app = express();
 var apiCatalog = require('./routes/api-catalog'); //Added for week 2. Require statement for api-catalog routes
+const { EINPROGRESS } = require('constants');
 
 /***Database connection*/
 mongoose.connect('mongodb+srv://admin:admin@buwebdev-cluster-1.ltgx9.mongodb.net/api-gateway', {
@@ -43,7 +43,9 @@ app.use('/api', apiCatalog); //Register the API Catalog’s routes
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  next(createError(404));
+  var err = new Error ("Not Found");
+  err.status = 404;
+  next(err);
 });
 
 // error handler
