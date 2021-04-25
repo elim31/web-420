@@ -2,7 +2,7 @@
 ============================================
 ; Title:  user.js
 ; Author: Professor Krasso
-; Date:   25 Mar 2021
+; Date:   22 Apr 2021
 ; Modified by: Eunice Lim
 ; Description: User model and schema
 ;===========================================
@@ -33,3 +33,9 @@ module.exports.getById = (id, callback)=> {
     var query ={_id: id};
     User.findById(query, callback);
     };
+
+//Query for finding individual users by email address
+module.exports.getOne = (e, callback) => {
+    var query = {email: e};
+    User.findOne(query,callback);
+};
